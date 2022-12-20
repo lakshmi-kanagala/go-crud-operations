@@ -75,16 +75,16 @@ func updateEmployeeByID(c *gin.Context) {
 	for i, a := range employees {
 		if a.ID == id {
 			employees[i] = newEmployee
-			c.IndentedJSON(http.StatusAccepted, newEmployee)
+			c.JSON(http.StatusAccepted, newEmployee)
 			return
 		}
 	}
-	c.IndentedJSON(http.StatusNotFound, gin.H{"message": "album not found"})
+	c.JSON(http.StatusNotFound, gin.H{"message": "album not found"})
 }
 
 // getEmployees details with list of employees information
 func getEmployees(c *gin.Context) {
-	c.IndentedJSON(http.StatusOK, employees)
+	c.JSON(http.StatusOK, employees)
 }
 
 // postEmployees create a new employee with json body posted in the call
@@ -98,7 +98,7 @@ func postEmployees(c *gin.Context) {
 
 	// Add the new employee to the slice.
 	employees = append(employees, newEmployee)
-	c.IndentedJSON(http.StatusCreated, newEmployee)
+	c.JSON(http.StatusCreated, newEmployee)
 }
 
 // getEmployeeByID locates the employee whose ID value matches the id
@@ -110,9 +110,9 @@ func getEmployeeByID(c *gin.Context) {
 	// an employee whose ID value matches the parameter.
 	for _, a := range employees {
 		if a.ID == id {
-			c.IndentedJSON(http.StatusOK, a)
+			c.JSON(http.StatusOK, a)
 			return
 		}
 	}
-	c.IndentedJSON(http.StatusNotFound, gin.H{"message": "employee not found"})
+	c.JSON(http.StatusNotFound, gin.H{"message": "employee not found"})
 }
